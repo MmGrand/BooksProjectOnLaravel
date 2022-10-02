@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Author\UpdateRequest;
+use App\Http\Resources\User\AuthorResource;
 use App\Models\Author;
 use App\Models\Book;
 
@@ -13,6 +14,8 @@ class AuthorUpdateController extends BaseController
     {
         $data = $request->validated();
         $author->update($data);
-        return redirect()->route('user.index', $author->id);
+        $author->fresh();
+        return new AuthorResource($author);
+       // return redirect()->route('user.index', $author->id);
     }
 }
