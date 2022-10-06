@@ -24,8 +24,18 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'genre' => 'string',
-            'description' => 'string',
+            'genre' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'genre.required' => 'Это поле необходимо для заполнения',
+            'genre.string' => 'Данные должны соответствовать строчному типу',
+            'description.required' => 'Это поле необходимо для заполнения',
+            'description.string' => 'Данные должны соответствовать строчному типу',
         ];
     }
 }

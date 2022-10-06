@@ -15,6 +15,7 @@ class AuthorByNameResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'author' => $this->author,
             'description' => $this->description,
             'date_of_birth' => $this->date_of_birth,

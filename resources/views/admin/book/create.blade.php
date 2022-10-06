@@ -11,15 +11,14 @@
                 <input
                     value="{{ old('name') }}"
                     type="text" name="name" class="form-control" id="name" placeholder="name">
-
                 @error('name')
                 <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea type="text" name="description" class="form-control" id="description" placeholder="description">{{ old('description') }}</textarea>
-
+                <textarea type="text" name="description" class="form-control" id="description"
+                          placeholder="description">{{ old('description') }}</textarea>
                 @error('description')
                 <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -27,12 +26,15 @@
             <div class="mb-3">
                 <label for="author_id" class="form-label">Author_id</label>
                 <select class="form-select" aria-label="Сhoose an author" id="author_id" name="author_id">
-                        @foreach($authors as $author)
-                            <option
-                                {{ old('author_id') == $author->id ? 'selected' : '' }}
-                                value="{{$author->id}}">{{ $author->author}}</option>
-                        @endforeach
+                    @foreach($authors as $author)
+                        <option
+                            {{ old('author_id') == $author->id ? 'selected' : '' }}
+                            value="{{$author->id}}">{{ $author->author}}</option>
+                    @endforeach
                 </select>
+                @error('author_id')
+                <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="genre_id" class="form-label">Genre_id</label>

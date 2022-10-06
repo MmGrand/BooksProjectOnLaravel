@@ -14,7 +14,13 @@ class Book extends Model
     use Filterable;
 
     protected $table = 'books';
-    protected $guarded = [];
+    protected $guarded = ['id'];
+
+    protected $fillable = [
+        'name',
+        'description',
+        'author_id',
+    ];
 
     public function genres()
     {

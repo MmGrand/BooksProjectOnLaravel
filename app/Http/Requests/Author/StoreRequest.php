@@ -24,9 +24,21 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'author'=> 'string',
-            'description'=> 'string',
-            'date_of_birth'=> 'date',
+            'author'=> 'required|string|max:255',
+            'description'=> 'required|string|max:255',
+            'date_of_birth'=> 'required|date',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'author.required' => 'Это поле необходимо для заполнения',
+            'author.string' => 'Данные должны соответствовать строчному типу',
+            'description.required' => 'Это поле необходимо для заполнения',
+            'description.string' => 'Данные должны соответствовать строчному типу',
+            'date_of_birth.required' => 'Это поле необходимо для заполнения',
+            'date_of_birth.date' => 'Данные должны соответствовать типу даты',
         ];
     }
 }

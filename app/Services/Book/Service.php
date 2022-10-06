@@ -3,24 +3,47 @@
 namespace App\Services\Book;
 
 use App\Models\Book;
+use Illuminate\Support\Facades\DB;
 
 class Service
 {
     public function store($data)
     {
-        $genres = $data['genres'];
-        unset($data['genres']);
+        try {
+            Db::beginTransaction();
+            if (isset($data['genres'])) {
+                $genres = $data['genres'];
+                unset($data['genres']);
+            }
         $book = Book::create($data);
 
-        $book->genres()->attach($genres);
+            if(isset($genres)) {
+                $book->genres()->attach($genres);
+            }
+            Db::commit();
+        } catch (\Exception $exception) {
+            Db::rollBack();
+            abort(500);
+        }
     }
 
     public function update($book, $data)
     {
-        $genres = $data['genres'];
-        unset($data['genres']);
+        try {
+            Db::beginTransaction();
+            if (isset($data['genres'])) {
+                $genres = $data['genres'];
+                unset($data['genres']);
+            }
         $book->update($data);
-        $book->genres()->sync($genres);
+            if(isset($genres)) {
+                $book->genres()->sync($genres);
+            }
+            Db::commit();
+        } catch (\Exception $exception) {
+            Db::rollBack();
+            abort(500);
+        }
         return $book->fresh();
     }
 }

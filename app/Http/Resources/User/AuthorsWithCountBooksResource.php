@@ -15,6 +15,7 @@ class AuthorsWithCountBooksResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'author' => $this->author,
             'count_books' => $this->books_count,
         ];

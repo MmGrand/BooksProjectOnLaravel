@@ -12,5 +12,10 @@ class BookGenre extends Model
     use SoftDeletes;
 
     protected $table = 'book_genres';
-    protected $guarded = false;
+    protected $guarded = ['id'];
+
+    protected $fillable = [
+        'book_id',
+        'genre_id',
+    ];
 }

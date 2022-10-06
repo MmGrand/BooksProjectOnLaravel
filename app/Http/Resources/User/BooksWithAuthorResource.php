@@ -15,6 +15,7 @@ class BooksWithAuthorResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'bookname' => $this->name,
             'author' => $this->author->author,
         ];
